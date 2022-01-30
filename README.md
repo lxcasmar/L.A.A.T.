@@ -1,4 +1,4 @@
-# EdgeTrading_beta
+# L.A.A.T.
 
 ## Setup instructions:
 
