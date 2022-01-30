@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div>{{ messages[0] }}</div>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="/login">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="password" placeholder="Password">
+        <button>Login</button>
+    </form>
+</div>
+{% endblock %}

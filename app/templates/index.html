@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% block content %}
+<div>
+  {% if current_user.is_authenticated %} {{ current_user.username }} {% else %}
+  placeholder {% endif %}
+  <button id="pause">Pause</button>
+  <button id="continue">Continue</button>
+  <a href="{{url_for('main.setup')}}">Edit</a>
+  <canvas id="canvas"></canvas>
+</div>
+<h1 class="mid">Welcome to L.A.A.T.!</h1>
+<!--suppress JSUnresolvedLibraryURL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--suppress JSUnresolvedLibraryURL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="{{url_for('static', filename='js/graph.js')}}"></script>
+<div class="learnMoreContainer">
+  <h1>Meet the Inidcators</h1>
+  <h2>What are Technical Indicators?</h2>
+  <p>
+    Simply put, a technical indicator is a mathematical calculation based on the price, 
+    volume, or open interest of a security (a stock). This is used to predict future price
+    movements of the stock. Technical indicators can be divided into 4 main groups: 
+    trend, momentum, Volatility, and volume indicators. Here, you will see that our strategies
+    combine multiple indicators. Note, however, that two indicators from the same
+    category are never used together. Combining indicators from the same category could 
+    lead to wrong price interpretation, confusion, and wrong trade decisions. For future reference, 
+    note that a number preceeding an indicator name specifies a generic time frame. I.e. 100EMA 
+    represents the 100-day/minute/second EMA
+  </p>
+  <h2> Types of Indicators</h2>
+  <ul class="nobullet">
+    <li class="override">
+      <h3>Trend Indicators</h3>
+      <p>
+        These indicators measure the direction and strength of an established trend in
+        the market. The direction of price movement indicates trend strength by measuring
+        whether buyers or sellers are willing and able to push the price beyond the previous
+        high/low. Trend indicators currently in use at L.A.A.T.:
+      </p>
+      <ul>
+        <li class="override">
+          <h4>EMA - Exponential Moving Average</h4>
+          <p>
+            In general, a moving average is a calculation that measures the average change
+            in price during a specific time period. It is used to filter out the "noise" of
+            short term fluctuations. Exponential moving averages place more importance on more
+            recent prices
+          </p>
+        </li>
+        
+      </ul>
+    </li>
+
+    <li class="override">
+      <h3>Momentum Indicators</h3>
+      <p>
+        Momentum indicators measure how fast price changes over a specific time period. Note that
+        momentum indicators do not reflect the direction of price change, only the speed of change.
+        Momentum indicators currently in use at L.A.A.T.:
+      </p>
+      <ul>
+        <li class="override">
+          <h4>RSI - Relative Strength Index</h4>
+          <p>
+            This measures the magnitude of price changes over a time period to determine if a 
+            stock is currently overbought or oversold.
+          </p>
+        </li>
+        <li class="override">
+          <h4>MACD - Moving Average Convergence Divergence</h4>
+        </li>
+      </ul>
+    </li>
+
+    <li class="override">
+      <h3>Volatility Indicators</h3>
+      <p>
+        Volatility indicators measure the amount of market activity in a security. When volatility
+        is high, there is plenty of buying and selling. On the other hand, low volatility indicates 
+        relatively low trading activity. Volatility indicators currently in use at L.A.A.T:
+      </p>
+      <ul>
+        <li class="override">
+          <h4>Bbands - Bollinger Bands</h4>
+        </li>
+      </ul>
+    </li>
+
+    <li class="override">
+      <h3>Volume Indicators</h3>
+      <p>
+        The last type of indicator measures how interested buyers and sellers are in a 
+        security by tracking things like buying and selling activity. Volume indicators currently 
+        in use at L.A.A.T:
+      </p>
+      <ul>
+        <li class="override">
+          <h4>OBV - On-balance Volume</h4>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+{% endblock %}

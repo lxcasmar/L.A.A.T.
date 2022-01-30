@@ -1,0 +1,3 @@
+rsi
+obv
+bbands

@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block content %}
+<form autocomplete="off" method="POST" action="{{url_for('main.submit')}}">
+  <label for="myInput">Choose which stocks to track:</label>
+  <div class="autocomplete">
+    <div style="display: inline-flex">
+      <input
+        id="myInput"
+        type="text"
+        name="myTickers"
+        placeholder="Input Ticker"
+      />
+      <input class="setupButton" type="button" id="addInput" value="Select" />
+    </div>
+  </div>
+  <ul id="selectedTickers"></ul>
+  <p>Please select a strategy:</p>
+  <input type="radio" id="strat0" name="strat" value="rsi_ema" required />
+  <label for="strat0">RSI &amp; EMA</label><br />
+  <input type="radio" id="strat1" name="strat" value="ema_obv" />
+  <label for="strat1">EMA &amp; OBV</label><br />
+  <input type="radio" id="strat2" name="strat" value="ema_bbands" />
+  <label for="strat2">EMA &amp; BBands</label><br />
+  <input type="radio" id="strat3" name="strat" value="macd_obv" />
+  <label for="strat3">MACD &amp; OBV</label><br />
+  <input type="radio" id="strat4" name="strat" value="rsi_bbands" />
+  <label for="strat4">RSI &amp; BBands</label><br />
+  <input type="radio" id="strat5" name="strat" value="obv_bbands" />
+  <label for="strat5">OBV &amp; BBands</label><br />
+  <input class="setupButton" type="submit" id="submit" />
+</form>
+<script src="{{url_for('static', filename='js/autocomplete.js')}}"></script>
+<script type="text/javascript">
+  const parsedData = {{data|tojson}};
+  autocomplete(document.getElementById("myInput"), JSON.parse(parsedData["tickers"]));
+</script>
+<div class="learnMoreContainer">
+  <h1 class="mid">Learn the Strategies</h1>
+  <ul class="nobullet">
+    <li class="override">
+      <h2>RSI &amp; EMA</h2>
+      <p>A buy signal is produced when price crosses the 100EMA and the 14RSI </p>
+    </li>
+    <liclass="override">
+      <h2>EMA &amp; OBV</h2>
+    </li>
+    <li class="override">
+      <h2>EMA &amp; BBands</h2>
+    </li>
+    <li class="override">
+      <h2>MACD &amp; OBV</h2>
+    </li>
+    <li class="override">
+      <h2>RSI &amp; BBands</h2>
+    </li>
+    <li class="override">
+      <h2>OBV &amp; BBands</h2>
+    </li>
+  </ul>
+</div>
+
+{% endblock %}
